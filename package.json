@@ -1,4 +1,5 @@
 {
+
   "name": "hello-jenkins",
   "descriptions": "hello jenkins test app",
   "version": "0.0.1",
@@ -11,6 +12,7 @@
 
   "devDependencies":{
 	"mocha": "1.20.1",	
-	"supertest": "0.13.0"
+	"supertest": "0.13.0",
+	"jshint": "2.8.0"
    }
  }
