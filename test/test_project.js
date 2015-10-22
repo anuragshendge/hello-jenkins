@@ -22,6 +22,40 @@ describe('Sample Math Library', function() {
 		});
 	});
 
+	describe('Simple addition', function() {
+		it('Returns a positive number', function(done) {
+			var answerPos = sample.simpleAddPos(3,4);
+			expect(answerPos).to.equal(7);
+			done();
+		});
+
+		it('Returns undefined for negative value', function(done) {
+			var answerUndef = sample.simpleAddPos(-4, 5);
+			expect(answerUndef).to.equal(undefined);
+			done();
+		});
+	});
+
+	describe('Absolute', function() {
+		it('Returns absolute value for both positive numbers', function(done) {
+			var absNum = sample.absolute(9, 5);
+			expect(absNum).to.equal(4);
+			done();
+		});
+
+		it('Returns absolute for both negative numbers', function(done){
+			var absNum = sample.absolute(-4, -8);
+			expect(absNum).to.equal(4);
+			done();
+		});
+
+		it('Returns absolute for one positive and one negative', function(done) {
+			var absNum = sample.absolute(-2, 6);
+			expect(absNum).to.equal(8);
+			done();
+		});
+	});
+
 	describe('Basic division', function(){
 		it('Returns a number for normal arguments', function(done){
 			var answerDiv = sample.divideNumbers(20,10);
