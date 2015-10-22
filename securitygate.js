@@ -1,5 +1,5 @@
 var fs = require("fs");
-var fileName = "test.js";
+var fileName = "securitygatetest.js";
 
 fs.exists(fileName, function(exists) {
   if (exists) {

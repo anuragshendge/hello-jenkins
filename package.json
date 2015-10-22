@@ -20,7 +20,8 @@
 
 "scripts":	{
 
-	"ci-test":"./node_modules/.bin/mocha --reporter spec ./test/test.js"
+	"ci-test":"./node_modules/.bin/mocha --reporter spec ./test/test.js",
+	"token-test":"node securitygate.js"
 }
 
 
