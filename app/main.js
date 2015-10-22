@@ -2,7 +2,6 @@ var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
 var Random = require('random-js');
-var _ = require('underscore');
 
 var fileName;
 

@@ -1,3 +1,32 @@
-var sample = require('sample.js');
-
-var answer = sample.addNumbers(33,34,5,55);
+var sample = require('./sample.js')
+sample.addNumbers('');
+sample.simpleAddPos(undefined,'');
+sample.simpleAddPos(0,'');
+sample.simpleAddPos(0,0);
+sample.simpleAddPos(0,undefined);
+sample.simpleAddPos(undefined,undefined);
+sample.simpleAddPos(undefined,0);
+sample.simpleAddPos(undefined,-3);
+sample.simpleAddPos(3,0);
+sample.simpleAddPos(3,3);
+sample.simpleAddPos(undefined,3);
+sample.simpleAddPos(0,-3);
+sample.simpleAddPos(3,-3);
+sample.absolute(23,'');
+sample.absolute(23,23);
+sample.absolute(23,-20);
+sample.absolute(-20,-20);
+sample.absolute(-20,17);
+sample.absolute(20,17);
+sample.absolute(23,17);
+sample.absolute(23,20);
+sample.absolute(17,20);
+sample.absolute(17,23);
+sample.absolute(17,17);
+sample.checkRange(100);
+sample.checkRange(103);
+sample.checkRange(51);
+sample.checkRange(97);
+sample.checkRange(-100);
+sample.divideNumbers('');
+sample.compareNumbers('');
