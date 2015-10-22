@@ -1,8 +1,6 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
-var faker = require("faker");
 var fs = require("fs");
-faker.locale = "en";
 var Random = require('random-js');
 var _ = require('underscore');
 
@@ -47,13 +45,6 @@ function Constraint(properties)
 	this.kind = properties.kind;
 }
 
-function fakeDemo()
-{
-	console.log( faker.phone.phoneNumber() );
-	console.log( faker.phone.phoneNumberFormat() );
-	console.log( faker.phone.phoneFormats() );
-}
-
 var functionConstraints =
 {
 }
@@ -87,7 +78,6 @@ function generateTestCases(filePath)
 		for (var i =0; i < functionConstraints[funcName].params.length; i++ )
 		{
 			var paramName = functionConstraints[funcName].params[i];
-			//params[paramName] = '\'' + faker.phone.phoneNumber()+'\'';
 			params[paramName] = '\'\'';
 		}
 		
@@ -294,7 +284,7 @@ function constraints(filePath)
 							dec = child.init.declarations[index];
 							if (dec.init.hasOwnProperty("object")) {
 								if (params.indexOf(dec.init.object.name) > -1) {
-									var phoneNumber = faker.phone.phoneNumberFormat();
+									var phoneNumber = "###-### ####";
 									functionConstraints[funcName].constraints.push(
 										new Constraint(
 										{
