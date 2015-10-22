@@ -1,9 +1,8 @@
 var fs = require('fs');
 var esprima = require('esprima');
 
-var addNumbers = function(base) {
-	
-	var sum = 0;
+function addNumbers (base) {
+    var sum = 0;
 	for (var i = 0; i < arguments.length; i++) {
 		if (typeof arguments[i] === 'number') {
 			sum += arguments[i];
@@ -11,12 +10,54 @@ var addNumbers = function(base) {
 			return undefined;
 		}
 	}
-	
-
 	return sum;
 };
 
-var divideNumbers = function(base) {
+function simpleAddPos (a, b) {
+	if (a == undefined) {
+		return undefined;
+	}
+
+	if (b == undefined) {
+		return undefined;
+	}
+
+	if (a > 0) {
+		if (b > 0) {
+			return a + b;
+		} else {
+			return undefined;
+		}
+	} else {
+		return undefined;
+	}
+};
+
+function absolute (a, b) {
+	if (a > b) {
+		return a - b;
+	} else {
+		if (b > a) {
+			return b - a;
+		} else {
+			return 0;
+		}
+	}
+}
+
+function checkRange (a) {
+	if (a > 100) {
+		return 1;
+	} else {
+		if (a < 50) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+}
+
+function divideNumbers (base) {
 	if (arguments.length > 2) {
 		return 0;
 	} else if (arguments.length == 2) {
@@ -32,7 +73,7 @@ var divideNumbers = function(base) {
 	}
 };
 
-var compareNumbers = function(base) {
+function compareNumbers (base) {
 	if (arguments.length < 2) {
 		return -2;
 	}
@@ -49,19 +90,9 @@ var compareNumbers = function(base) {
 	}
 };
 
-function main () {
-	var first = 34;
-	var second = 45;
-	var third = 56;
-	var fourth = 67;
-
-	var answer = addNumbers(first, second, third,fourth);
-	//var answer = divideNumbers(23,45);
-	console.log(answer);
-}
-
-//main();
-
 exports.addNumbers = addNumbers;
 exports.divideNumbers = divideNumbers;
 exports.compareNumbers = compareNumbers;
+exports.simpleAddPos = simpleAddPos;
+exports.absolute = absolute;
+exports.checkRange = checkRange;
