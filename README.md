@@ -72,7 +72,7 @@ Lines        : 72.41% ( 42/58 )
   
 ## Analysis section
 #### Analysis Components
-##### 1. Static Analysis
+##### 1. Static Analysis (Base Analysis)
 For static analysis, we have used `JSHint` on our source file. The JSHint tool shows various types static errors like, semicolon not present, function library not imported, and so on. These errors can be configured using the `.jshintrc` file to suite your requirements. For example, to force the programmer to include all libraries, the `undef` flag can be set in the .jshintrc file, which will produce an error if the libraries of which functions are being used, aren't required. The build will fail in case the static analysis check is not successful.  
   
 Here are some of the errors that `jshint` will report.  
@@ -88,103 +88,17 @@ sample.js: line 101, col 28, Expected '===' and instead saw '=='.
 </pre>  
 
 ##### 2. Extended Static Analysis
-To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.
+To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and fail the build.  
 
+- - -
 
-### Build Setup
->   We installed Tomcat, Jenkins, git, and maven on our local machine. We used the follwing plugins in Jenkins:   
-	1. **Github Plugin**: The github plugin helps us to use our repo by specifying git clone url for build process    
-	2. **Mailer Plugin**: The mailer plugin is used to send emails from Jenkins to notify about the build status
+## Security check  
+In order to protect the private key files and AWS/Digital Ocean tokens, we have developed scripts to check for tokens in the repository files and for some commonly known security files, like id_rsa and .pem files. When code is committed, this script is run through a pre-commit git hook, which will perform the checks. If any of the tokens or files are found in the repository, the script will return a non zero exit status, which will block the commit from going through.  
 
+- - -
 
+## Screencast  
 
-### Build section
->	***1. Ability to trigger a build in response to git commit via git post-commit hook***
->>	Post Commit contents:   We used a perl script in the post commit file to trigger the build on either 'dev' or 'release' branches
-
-
-```perl
-#!/usr/bin/perl
-my $branch = `git rev-parse --abbrev-ref HEAD`;
-chomp($branch);
-print "Committing to branch $branch\n";
-
-my $curlString;
-
-if ($branch eq "release") {
-	$curlString = 'curl -s "http://localhost:8080/jenkins/job/M1-release/buildWithParameters?token=build-release&branch=release"';
-} elsif ($branch eq "dev") {
-	$curlString = 'curl -s "http://localhost:8080/jenkins/job/M1-dev/buildWithParameters?token=build-dev&branch=dev"';
-}
-print "Sending curl string: $curlString\n";
-`$curlString`;
-
-```	
-
->	***2. The ability to execute a build job via a script or build manager (e.g., shell, maven), which ensures a clean build each time.***
->>	As jbehave is a Java application, we installed maven and integrated it with Jenkins to ensure a clean build each time. pom.xml was provided by Authors of jbehave.
-
-
->   ***3. The ability to determine failure or success of a build job and trigger an external event [email]***
->>	For this task, we configured the email plugin on Jenkins. Here are a few screenshots that demonstrate some of the configuration.   
-
-![Screenshot1](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/ExtendedEmailPlugin.png)   
-
->>  Another screenshot showing more configuration   
-
-![Screenshot2](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/EmailPlugin.png)   
-
->>	
-
->	***4. The ability to have multiple jobs corresponding to multiple branches in a repository***	
->>	We added one job in Jenkins which corresponds to each job in git. The post-commit git hook will get the current branch on which the commit is made and will trigger the respective job on Jenkins. Each job of jenkins is configured as a parameterized build, which will accept the build string from the git post-commit hook and run the build on the local repository according to that.   
-   
->>  Here is a screenshot showing the 'parameterized' field enabled   
-
-![Screenshot4](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/M1-Release-config-1.png)   
-   
->>  Another screenshot showing the build trigger configuration in Jenkins   
- 
-![Screenshot5](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/M1-release-config-2.png)   
-
- 
-
->	***5. The ability to track and display a history of past builds.***
->> 	The following code snippet helps us dispaly the history of past builds by making a GET request to the REST API provided by Jenkins
-
-```javascript
-var git = require('git-rev');
-var needle = require("needle");
-
-var brnc;
-
-var client =
-{
-    listBuilds: function( onResponse )
-    {
-        git.branch(function (str) {
-        if(str=="dev")
-        	needle.get("http://localhost:8080/jenkins/job/M1-dev/api/json?pretty=true", onResponse)
-        else if(str=="release")
-         	needle.get("http://localhost:8080/jenkins/job/M1-release/api/json?pretty=true", onResponse)
-		})
-    },
-}
-
-client.listBuilds(function(error, response)
-{
-        var data = response.body;
-        console.log(data['builds']);
-});
-
-```  
-  
->>  Here is a screenshot of the list of the builds   
-
-![Screenshot3](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/BuildsList.png)
-
-
-#Screencast   
-###(Click the image below  and you will be redirected to YouTube)
+### (Click the image below  and you will be redirected to YouTube)
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/uwU8yQDhyNE/0.jpg)](https://youtu.be/uwU8yQDhyNE)
 
