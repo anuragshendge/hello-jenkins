@@ -5,6 +5,11 @@ AWS.config.update({
     accessKeyId: '',
     secretAccessKey: ''
 });
+
+token = "";
+
+
+
 AWS.config.update({
     region: 'us-west-2'
 });
