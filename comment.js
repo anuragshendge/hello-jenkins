@@ -57,11 +57,15 @@ fs.exists(fileName, function(exists) {
 					console.log("Ratio: ", ratio);
 			
     	     
-    	      		if(ratio<0.1||ratio>0.5)
+    	      		if(ratio < 0.1)
     	      		{
-    	      	
+						console.log("Add more comments in the file for documentation.");
+						console.log("Rejecting build.");
     	      			process.exit(1);
-    	      		}
+    	      		} else if (ratio >= 0.2) {
+						console.log("Too many comments.");
+						console.log("Rejecting build.");
+					}
     	      		fs.close(fd);;
     	    	});
     	  	});
