@@ -15,7 +15,7 @@ while (my $line = <FILE> ) {
 foreach my $line (@output_array) {
 	if ($line =~ m/\S+\s+:\s+(\d+\.\d+)%/) {
 		my $percentage = sprintf ("%.2f", $1);
-		if ($percentage < 90.00) {
+		if ($percentage < 10.00) {
 			#not_enough_statement_coverage();
 			exit(1);
 		} else {

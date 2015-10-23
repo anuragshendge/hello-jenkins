@@ -399,8 +399,8 @@ function constraints(filePath)
 
 			});
 
-			console.log( functionConstraints[funcName]);
-			console.log("------------------");
+			//console.log( functionConstraints[funcName]);
+			//console.log("------------------");
 
 		}
 	});
