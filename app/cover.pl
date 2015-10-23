@@ -9,15 +9,16 @@ while (my $line = <FILE> ) {
 	push (@output_array, $line);
 }
 
+my $target_coverage = 70.00;
 #my @output_array = split(/\n/, $cmd_output);
 foreach my $line (@output_array) {
 	if ($line =~ m/([a-zA-Z]+)\s+:\s+(\d+\.\d+)%/) {
 		my $percentage = sprintf ("%.2f", $2);
 		my $category = $1;
 		my $op;
-		if ($percentage < 70.00) {
+		if ($percentage < $target_coverage) {
 			print "Failing build because $category coverage is less than".
-				" threshold of $percentage%\n";
+				" threshold of $target_coverage%\n";
 			exit(1);
 		} else {
 			$op = sprintf "%-11s - %s", $category, $percentage;
