@@ -15,8 +15,9 @@ foreach my $line (@output_array) {
 		my $percentage = sprintf ("%.2f", $2);
 		my $category = $1;
 		my $op;
-		if ($percentage < 10.00) {
-			#not_enough_statement_coverage();
+		if ($percentage < 80.00) {
+			print "Failing build because $category coverage is less than".
+				" threshold of 80%";
 			exit(1);
 		} else {
 			$op = sprintf "%-11s - %s", $category, $percentage;
