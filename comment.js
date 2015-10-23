@@ -65,6 +65,7 @@ fs.exists(fileName, function(exists) {
     	      		} else if (ratio >= 0.2) {
 						console.log("Too many comments.");
 						console.log("Rejecting build.");
+						process.exit(1);
 					}
     	      		fs.close(fd);;
     	    	});
