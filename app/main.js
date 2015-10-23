@@ -116,7 +116,7 @@ function generateTestCases(filePath)
 		var writtenFS = [];
 		var randomParams = params;
 		var constraints = functionConstraints[funcName].constraints;
-		for (var i = 0; i < (constraints.length)*1; i++) {
+		for (var i = 0; i < (constraints.length)*9; i++) {
 			var randomNumber = Math.floor(Math.random()*constraints.length);
 			//console.log("Random number: ",randomNumber);
 			var constr = constraints[randomNumber];
@@ -375,24 +375,24 @@ function constraints(filePath)
 								operator: child.operator,
 								expression: expression
 							})
-							//new Constraint(
-							//{
-							//	ident: child.left.name,
-							//	value: parseInt(rightHand),
-							//	funcName: funcName,
-							//	kind: "integer",
-							//	operator: child.operator,
-							//	expression: expression
-							//}),
-							//new Constraint(
-							//{
-							//	ident: child.left.name,
-							//	value: parseInt(rightHand)*-1,
-							//	funcName: funcName,
-							//	kind: "integer",
-							//	operator: child.operator,
-							//	expression: expression
-							//})
+							new Constraint(
+							{
+								ident: child.left.name,
+								value: parseInt(rightHand),
+								funcName: funcName,
+								kind: "integer",
+								operator: child.operator,
+								expression: expression
+							}),
+							new Constraint(
+							{
+								ident: child.left.name,
+								value: parseInt(rightHand)*-1,
+								funcName: funcName,
+								kind: "integer",
+								operator: child.operator,
+								expression: expression
+							})
 						);
 					}
 				}
