@@ -6,7 +6,7 @@
 
 - - - 
 
-## Project used to test the builds
+## Project used to test the build
 For this milestone, we wrote a small JavaScript program to perform some basic arithmetic operations. This script is a standalone script with no library dependencies. We have included Unit tests, code coverage, static analysis, extended static analysis, and security checks as build steps in order to determine the success or failure of a build. Our project uses the following test and analysis components.
 
 1. Unit Tests
@@ -20,7 +20,8 @@ For this milestone, we wrote a small JavaScript program to perform some basic ar
 
 ## Test Section
 #### Test setup  
-For this project, we have used Jenkins CI to run our build scripts, which consist of the scripts for unit tests, code coverage, static analysis and security checks. We have installed Jenkins on a remote server which we brought up through [DigitalOcean](https://www.digitalocean.com/).
+For this project, we have used Jenkins CI to run our build scripts, which consist of the scripts for unit tests, code coverage, static analysis and security checks. We have installed Jenkins on a remote server which we brought up through [DigitalOcean](https://www.digitalocean.com/). On our GitHub repository, we have added a Jenkins Hook URL with which the git repository will communicate whenever an event occurs on the git repository. When a developer commits and pushes code (assuming the secrity check has passed), git communicates with the Jenkins server and the Jenkins server pulls the code from git, and runs the CI tests to report the result.  
+
 #### Test Components
 ##### 1. Unit tests
 We have used the `mocha` JavaScript framework for running our unit tests. A developer will write unit tests as per the return values of the functions. The mocha framework will execute those unit tests, and produce a report format based on the argument provided. In Jenkins, the unit test is run by executing `npm run unit-test` on the execute shell. The execution status is checked by the shell, and the build is failed unless all the unit tests pass. 
@@ -87,9 +88,7 @@ sample.js: line 101, col 28, Expected '===' and instead saw '=='.
 </pre>  
 
 ##### 2. Extended Static Analysis
-To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.  
-
-- - -
+To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.
 
 
 ### Build Setup
