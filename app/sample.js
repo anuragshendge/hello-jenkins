@@ -18,7 +18,7 @@ function addNumbers (base) {
 		}
 	}
 	return sum;
-};
+}
 
 /**
  * Add two positive numbers
@@ -66,6 +66,11 @@ function absolute (a, b) {
 	}
 }
 
+// Random comment
+// For testing purpose
+// Delete after testing
+// for this run
+
 function checkRange (a) {
 	if (a > 100) {
 		return 1;
@@ -81,7 +86,7 @@ function checkRange (a) {
 function divideNumbers (base) {
 	if (arguments.length > 2) {
 		return 0;
-	} else if (arguments.length == 2) {
+	} else if (arguments.length === 2) {
 		if (arguments[0] > arguments[1]) {
 			return arguments[0]/arguments[1];
 		} else if (arguments[0] < arguments[1]) {
@@ -92,13 +97,13 @@ function divideNumbers (base) {
 	} else {
 		return undefined;
 	}
-};
+}
 
 function compareNumbers (base) {
 	if (arguments.length < 2) {
 		return -2;
 	}
-	if (arguments.length == 2) {
+	if (arguments.length === 2) {
 		if (arguments[0] > arguments[1]) {
 			return -1;
 		} else if (arguments[1] > arguments[0]) {
