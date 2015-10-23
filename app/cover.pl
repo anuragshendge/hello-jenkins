@@ -15,17 +15,15 @@ while (my $line = <FILE> ) {
 foreach my $line (@output_array) {
 	if ($line =~ m/\S+\s+:\s+(\d+\.\d+)%/) {
 		my $percentage = sprintf ("%.2f", $1);
-		print "Coverage: $percentage\n";
 		if ($percentage < 90.00) {
-			#print("You fail! - ");
-			not_enough_statement_coverage();
+			#not_enough_statement_coverage();
+			exit(1);
 		} else {
 			print "You pass! - ";
 		}
 		print "$percentage\n";
 	} elsif ($line =~ m/\S+\s+:\s+(\d+)%/) {
 		my $percentage = sprintf ("%.2f", $1);
-		print "Coverage: $percentage\n";
 		if ($percentage < 80.65) {
 			print("You fail! - \n");
 		} else {
