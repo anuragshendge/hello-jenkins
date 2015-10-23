@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-print "------TESTING------\n\n"
+print "------TESTING------\n\n";
 my $tap_file = "../test.tap";
 open(FILE, $tap_file);
 
