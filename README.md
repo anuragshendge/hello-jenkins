@@ -72,8 +72,20 @@ Lines        : 72.41% ( 42/58 )
 #### Analysis Components
 ##### 1. Static Analysis
 For static analysis, we have used `JSHint` on our source file. The JSHint tool shows various types static errors like, semicolon not present, function library not imported, and so on. These errors can be configured using the `.jshintrc` file to suite your requirements. For example, to force the programmer to include all libraries, the `undef` flag can be set in the .jshintrc file, which will produce an error if the libraries of which functions are being used, aren't required. The build will fail in case the static analysis check is not successful.  
+  
+Here are some of the errors that `jshint` will report.  
+<pre>
+sample.js: line 21, col 2, Unnecessary semicolon.
+sample.js: line 31, col 13, Expected '===' and instead saw '=='.
+sample.js: line 35, col 13, Expected '===' and instead saw '=='.
+sample.js: line 84, col 35, Expected '===' and instead saw '=='.
+sample.js: line 95, col 2, Unnecessary semicolon.
+sample.js: line 101, col 28, Expected '===' and instead saw '=='.
 
-##### 2. Extended Statis Analysis
+6 errors
+</pre>  
+
+##### 2. Extended Static Analysis
 To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.
 
 
