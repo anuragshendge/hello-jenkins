@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 
 use strict;
-print "------TESTING------\n\n";
 my $tap_file = "test.tap";
 open(FILE, $tap_file) or die "Could not open file\n";
 
@@ -10,26 +9,29 @@ while (my $line = <FILE> ) {
 	push (@output_array, $line);
 }
 
-#print "$a\n";
 #my @output_array = split(/\n/, $cmd_output);
 foreach my $line (@output_array) {
-	if ($line =~ m/\S+\s+:\s+(\d+\.\d+)%/) {
-		my $percentage = sprintf ("%.2f", $1);
+	if ($line =~ m/([a-zA-Z]+)\s+:\s+(\d+\.\d+)%/) {
+		my $percentage = sprintf ("%.2f", $2);
+		my $category = $1;
+		my $op;
 		if ($percentage < 10.00) {
 			#not_enough_statement_coverage();
 			exit(1);
 		} else {
-			print "You pass! - ";
+			$op = sprintf "%-11s - %s", $category, $percentage;
 		}
-		print "$percentage\n";
-	} elsif ($line =~ m/\S+\s+:\s+(\d+)%/) {
-		my $percentage = sprintf ("%.2f", $1);
+		print "$op%\n";
+	} elsif ($line =~ m/([a-zA-Z]+)\s+:\s+(\d+)%/) {
+		my $percentage = sprintf ("%.2f", $2);
+		my $category = $1;
+		my $op;
 		if ($percentage < 80.65) {
-			print("You fail! - \n");
+			exit(1);
 		} else {
-			print "You pass! - ";
+			$op = sprintf "%-11s - %d", $category, $percentage;
 		}
-		print "$percentage\n";
+		print "$op%\n";
 	}
 }
 
