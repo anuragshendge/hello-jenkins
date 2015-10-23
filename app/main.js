@@ -199,7 +199,7 @@ function constraints(filePath)
 		if (node.type === 'FunctionDeclaration') 
 		{
 			var funcName = functionName(node);
-			console.log("Line : {0} Function: {1}".format(node.loc.start.line, funcName ));
+			//console.log("Line : {0} Function: {1}".format(node.loc.start.line, funcName ));
 
 			var params = node.params.map(function(p) {return p.name});
 
