@@ -1,6 +1,5 @@
 var fs = require('fs');
 var readdirp = require('readdirp');
-
 // Directory sweep for security token and key files
 
 readdirp({ root: '.', fileFilter: '*.pem' ,directoryFilter:['!node_modules']})

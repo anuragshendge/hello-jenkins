@@ -8,4 +8,5 @@
 # To enable this hook, rename this file to "pre-commit".
 
 node securitygate.js
+
 node security_dir.js
