@@ -2,10 +2,11 @@
 ## Team members
 1. Krishna Teja Dinavahi (kdinava) 
 2. Aneesh Kher (aakher)
-3. Anurag Shendge (ashendg)
+3. Anurag Shendge (ashendg)  
+
 - - - 
 
-## Project used to test the builds
+## Project used to test the build
 For this milestone, we wrote a small JavaScript program to perform some basic arithmetic operations. This script is a standalone script with no library dependencies. We have included Unit tests, code coverage, static analysis, extended static analysis, and security checks as build steps in order to determine the success or failure of a build. Our project uses the following test and analysis components.
 
 1. Unit Tests
@@ -19,7 +20,8 @@ For this milestone, we wrote a small JavaScript program to perform some basic ar
 
 ## Test Section
 #### Test setup  
-For this project, we have used Jenkins CI to run our build scripts, which consist of the scripts for unit tests, code coverage, static analysis and security checks. We have installed Jenkins on a remote server which we brought up through [DigitalOcean](https://www.digitalocean.com/).
+For this project, we have used Jenkins CI to run our build scripts, which consist of the scripts for unit tests, code coverage, static analysis and security checks. We have installed Jenkins on a remote server which we brought up through [DigitalOcean](https://www.digitalocean.com/). On our GitHub repository, we have added a Jenkins Hook URL with which the git repository will communicate whenever an event occurs on the git repository. When a developer commits and pushes code (assuming the secrity check has passed), git communicates with the Jenkins server and the Jenkins server pulls the code from git, and runs the CI tests to report the result.  
+
 #### Test Components
 ##### 1. Unit tests
 We have used the `mocha` JavaScript framework for running our unit tests. A developer will write unit tests as per the return values of the functions. The mocha framework will execute those unit tests, and produce a report format based on the argument provided. In Jenkins, the unit test is run by executing `npm run unit-test` on the execute shell. The execution status is checked by the shell, and the build is failed unless all the unit tests pass. 
@@ -70,107 +72,33 @@ Lines        : 72.41% ( 42/58 )
   
 ## Analysis section
 #### Analysis Components
-##### 1. Static Analysis
+##### 1. Static Analysis (Base Analysis)
 For static analysis, we have used `JSHint` on our source file. The JSHint tool shows various types static errors like, semicolon not present, function library not imported, and so on. These errors can be configured using the `.jshintrc` file to suite your requirements. For example, to force the programmer to include all libraries, the `undef` flag can be set in the .jshintrc file, which will produce an error if the libraries of which functions are being used, aren't required. The build will fail in case the static analysis check is not successful.  
-
-##### 2. Extended Statis Analysis
-To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.
-
-
-### Build Setup
->   We installed Tomcat, Jenkins, git, and maven on our local machine. We used the follwing plugins in Jenkins:   
-	1. **Github Plugin**: The github plugin helps us to use our repo by specifying git clone url for build process    
-	2. **Mailer Plugin**: The mailer plugin is used to send emails from Jenkins to notify about the build status
-
-
-
-### Build section
->	***1. Ability to trigger a build in response to git commit via git post-commit hook***
->>	Post Commit contents:   We used a perl script in the post commit file to trigger the build on either 'dev' or 'release' branches
-
-
-```perl
-#!/usr/bin/perl
-my $branch = `git rev-parse --abbrev-ref HEAD`;
-chomp($branch);
-print "Committing to branch $branch\n";
-
-my $curlString;
-
-if ($branch eq "release") {
-	$curlString = 'curl -s "http://localhost:8080/jenkins/job/M1-release/buildWithParameters?token=build-release&branch=release"';
-} elsif ($branch eq "dev") {
-	$curlString = 'curl -s "http://localhost:8080/jenkins/job/M1-dev/buildWithParameters?token=build-dev&branch=dev"';
-}
-print "Sending curl string: $curlString\n";
-`$curlString`;
-
-```	
-
->	***2. The ability to execute a build job via a script or build manager (e.g., shell, maven), which ensures a clean build each time.***
->>	As jbehave is a Java application, we installed maven and integrated it with Jenkins to ensure a clean build each time. pom.xml was provided by Authors of jbehave.
-
-
->   ***3. The ability to determine failure or success of a build job and trigger an external event [email]***
->>	For this task, we configured the email plugin on Jenkins. Here are a few screenshots that demonstrate some of the configuration.   
-
-![Screenshot1](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/ExtendedEmailPlugin.png)   
-
->>  Another screenshot showing more configuration   
-
-![Screenshot2](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/EmailPlugin.png)   
-
->>	
-
->	***4. The ability to have multiple jobs corresponding to multiple branches in a repository***	
->>	We added one job in Jenkins which corresponds to each job in git. The post-commit git hook will get the current branch on which the commit is made and will trigger the respective job on Jenkins. Each job of jenkins is configured as a parameterized build, which will accept the build string from the git post-commit hook and run the build on the local repository according to that.   
-   
->>  Here is a screenshot showing the 'parameterized' field enabled   
-
-![Screenshot4](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/M1-Release-config-1.png)   
-   
->>  Another screenshot showing the build trigger configuration in Jenkins   
- 
-![Screenshot5](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/M1-release-config-2.png)   
-
- 
-
->	***5. The ability to track and display a history of past builds.***
->> 	The following code snippet helps us dispaly the history of past builds by making a GET request to the REST API provided by Jenkins
-
-```javascript
-var git = require('git-rev');
-var needle = require("needle");
-
-var brnc;
-
-var client =
-{
-    listBuilds: function( onResponse )
-    {
-        git.branch(function (str) {
-        if(str=="dev")
-        	needle.get("http://localhost:8080/jenkins/job/M1-dev/api/json?pretty=true", onResponse)
-        else if(str=="release")
-         	needle.get("http://localhost:8080/jenkins/job/M1-release/api/json?pretty=true", onResponse)
-		})
-    },
-}
-
-client.listBuilds(function(error, response)
-{
-        var data = response.body;
-        console.log(data['builds']);
-});
-
-```  
   
->>  Here is a screenshot of the list of the builds   
+Here are some of the errors that `jshint` will report.  
+<pre>
+sample.js: line 21, col 2, Unnecessary semicolon.
+sample.js: line 31, col 13, Expected '===' and instead saw '=='.
+sample.js: line 35, col 13, Expected '===' and instead saw '=='.
+sample.js: line 84, col 35, Expected '===' and instead saw '=='.
+sample.js: line 95, col 2, Unnecessary semicolon.
+sample.js: line 101, col 28, Expected '===' and instead saw '=='.
 
-![Screenshot3](https://github.com/aneeshkher/DevOpsMilestone1/blob/master/images/BuildsList.png)
+6 errors
+</pre>  
 
+##### 2. Extended Static Analysis
+To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and fail the build.  
 
-#Screencast   
-###(Click the image below  and you will be redirected to YouTube)
+- - -
+
+## Security check  
+In order to protect the private key files and AWS/Digital Ocean tokens, we have developed scripts to check for tokens in the repository files and for some commonly known security files, like id_rsa and .pem files. When code is committed, this script is run through a pre-commit git hook, which will perform the checks. If any of the tokens or files are found in the repository, the script will return a non zero exit status, which will block the commit from going through.  
+
+- - -
+
+## Screencast  
+
+### (Click the image below  and you will be redirected to YouTube)
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/uwU8yQDhyNE/0.jpg)](https://youtu.be/uwU8yQDhyNE)
 
