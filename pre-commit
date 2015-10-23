@@ -9,4 +9,7 @@
 
 node securitygate.js
 
+if test $? -eq 1; 
+then return 1;
+fi	
 node security_dir.js
