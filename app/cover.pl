@@ -2,8 +2,8 @@
 
 use strict;
 print "------TESTING------\n\n";
-my $tap_file = "../test.tap";
-open(FILE, $tap_file);
+my $tap_file = "test.tap";
+open(FILE, $tap_file) or die "Could not open file\n";
 
 my @output_array = ();
 while (my $line = <FILE> ) {
