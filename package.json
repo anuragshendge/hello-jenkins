@@ -15,12 +15,17 @@
 	"supertest": "0.13.0",
 	"jshint": "2.8.0",
 	"tape":"4.2.2",
-	"istanbul":"0.4.0"
+	"istanbul":"^0.4.0",
+	"esprima":"^2.7.0",
+	"node-gyp":"^3.0.3",
+	"chai":"~3.3.0"
+
    },
 
 "scripts":	{
 
-	"ci-test":"./node_modules/.bin/mocha --reporter spec ./test/test.js"
+	"ci-test":"./node_modules/.bin/mocha --reporter spec ./test/test_project.js",
+	"token-test":"node securitygate.js"
 }
 
 

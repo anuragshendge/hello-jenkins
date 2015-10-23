@@ -1,2 +1,2 @@
-# hello-jenkins
-Simple Node.js app for testing the configuration and integration with Jenkins Continuous Integration tool
+# DevOps Milestone 2
+Testing the configuration and integration with Jenkins Continuous Integration tool
