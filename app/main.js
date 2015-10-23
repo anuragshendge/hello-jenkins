@@ -374,7 +374,7 @@ function constraints(filePath)
 								kind: "integer",
 								operator: child.operator,
 								expression: expression
-							})
+							}),
 							new Constraint(
 							{
 								ident: child.left.name,
