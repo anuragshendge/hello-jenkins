@@ -18,7 +18,7 @@ function addNumbers (base) {
 		}
 	}
 	return sum;
-};
+}
 
 /**
  * Add two positive numbers
@@ -28,11 +28,11 @@ function addNumbers (base) {
  * @return {number} The addition of the two numbers if they are positive
  */
 function simpleAddPos (a, b) {
-	if (a == undefined) {
+	if (a === undefined) {
 		return undefined;
 	}
 
-	if (b == undefined) {
+	if (b === undefined) {
 		return undefined;
 	}
 
@@ -45,7 +45,7 @@ function simpleAddPos (a, b) {
 	} else {
 		return undefined;
 	}
-};
+}
 
 /*
  * Return the absolute difference between two numbers
@@ -92,7 +92,7 @@ function divideNumbers (base) {
 	} else {
 		return undefined;
 	}
-};
+}
 
 function compareNumbers (base) {
 	if (arguments.length < 2) {
@@ -109,7 +109,7 @@ function compareNumbers (base) {
 	} else {
 		return 2;
 	}
-};
+}
 
 exports.addNumbers = addNumbers;
 exports.divideNumbers = divideNumbers;
