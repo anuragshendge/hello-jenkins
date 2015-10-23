@@ -21,16 +21,6 @@ function main()
 
 }
 
-var engine = Random.engines.mt19937().autoSeed();
-
-function createConcreteIntegerValue( greaterThan, constraintValue )
-{
-	if( greaterThan )
-		return Random.integer(constraintValue,constraintValue+10)(engine);
-	else
-		return Random.integer(constraintValue-10,constraintValue)(engine);
-}
-
 function Constraint(properties)
 {
 	this.ident = properties.ident;
