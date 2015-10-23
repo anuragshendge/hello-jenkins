@@ -2,8 +2,8 @@ var AWS = require('aws-sdk');
 var fs = require('fs');
 
 AWS.config.update({
-    accessKeyId: '-Enter you Key-',
-    secretAccessKey: '-Enter your Key-'
+    accessKeyId: '',
+    secretAccessKey: ''
 });
 AWS.config.update({
     region: 'us-west-2'
@@ -13,7 +13,6 @@ var ec2 = new AWS.EC2();
 var instanceID;
 var PublicIP;
 var params = {
-
     ImageId: 'ami-5189a661',
     InstanceType: 't2.micro',
     KeyName: 'Enter your key name',
