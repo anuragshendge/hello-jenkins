@@ -1,6 +1,10 @@
 var fs = require("fs");
 var fileName = "securitygatetest.js";
 
+//Implementing the Security gate feature so that it rejects the commits if there are any
+//security tkens left hardocded in the file
+
+
 fs.exists(fileName, function(exists) {
   if (exists) {
     fs.stat(fileName, function(error, stats) {
