@@ -1,6 +1,13 @@
 var fs = require('fs');
 var esprima = require('esprima');
 
+/**
+ * 
+ * Adds all the numbers in the array
+ *
+ * @params {array} base - array of numbers
+ * @return {number} The sum of all the numbers
+ */
 function addNumbers (base) {
     var sum = 0;
 	for (var i = 0; i < arguments.length; i++) {
@@ -13,6 +20,13 @@ function addNumbers (base) {
 	return sum;
 };
 
+/**
+ * Add two positive numbers
+ *
+ * @params {number} a - First number
+ * @params {number} b - Second number
+ * @return {number} The addition of the two numbers if they are positive
+ */
 function simpleAddPos (a, b) {
 	if (a == undefined) {
 		return undefined;
@@ -33,6 +47,13 @@ function simpleAddPos (a, b) {
 	}
 };
 
+/*
+ * Return the absolute difference between two numbers
+ *
+ * @params {number} a - First number
+ * @params {number} b - Second number
+ * @return {number} The absolute difference between the numbers
+ */
 function absolute (a, b) {
 	if (a > b) {
 		return a - b;
