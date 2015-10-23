@@ -21,8 +21,10 @@ fs.exists(fileName, function(exists) {
           
             if(data[index+6]=='"'&&data[index+7]!='"')
             {
-            	console.log("token");
-            	fbsdfjd
+            	//console.log("token");
+            	console.log('Private token found. Security breach!! Rejecting the build') 
+              process.exit(1);
+
             }
           }
           else
