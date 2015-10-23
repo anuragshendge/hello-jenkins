@@ -10,29 +10,40 @@ while (my $line = <FILE> ) {
 }
 
 my $target_coverage = 70.00;
-#my @output_array = split(/\n/, $cmd_output);
 foreach my $line (@output_array) {
 	if ($line =~ m/([a-zA-Z]+)\s+:\s+(\d+\.\d+)%/) {
 		my $percentage = sprintf ("%.2f", $2);
 		my $category = $1;
 		my $op;
-		if ($percentage < $target_coverage) {
-			print "Failing build because $category coverage is less than".
-				" threshold of $target_coverage%\n";
-			exit(1);
+		if ($category =~ /Statement/) {
+			if ($percentage < $target_coverage) {
+				print "Failing build because $category coverage is less than".
+					" threshold of $target_coverage%\n";
+				exit(1);
+			} else {
+				$op = sprintf "%-11s - %s", $category, $percentage;
+			}	
 		} else {
 			$op = sprintf "%-11s - %s", $category, $percentage;
+
 		}
+		
 		print "$op%\n";
 	} elsif ($line =~ m/([a-zA-Z]+)\s+:\s+(\d+)%/) {
+
 		my $percentage = sprintf ("%.2f", $2);
 		my $category = $1;
 		my $op;
-		if ($percentage < 80.65) {
-			exit(1);
+		if ($category =~ /Statements/) {
+			if ($percentage < $target_coverage) {
+				exit(1);
+			} else {
+				$op = sprintf "%-11s - %d", $category, $percentage;
+			}
 		} else {
 			$op = sprintf "%-11s - %d", $category, $percentage;
 		}
+		
 		print "$op%\n";
 	}
 }
