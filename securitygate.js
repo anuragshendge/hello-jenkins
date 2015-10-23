@@ -1,6 +1,10 @@
 var fs = require("fs");
 var fileName = "securitygatetest.js";
 
+//Implementing the Security gate feature so that it rejects the commits if there are any
+//security tkens left hardocded in the file
+
+
 fs.exists(fileName, function(exists) {
   if (exists) {
     fs.stat(fileName, function(error, stats) {
@@ -22,8 +26,9 @@ fs.exists(fileName, function(exists) {
           
             if((data[index+13]=="'"&&data[index+14]!="'")||(data[index1+17]=="'"&&data[index1+18]!="'"))
             {
-            	console.log("token");
-            	process.exit(1);
+            	console.log('Private token found. Security breach!! Rejecting the build') 
+              	process.exit(1);
+
             }
           }
           else
