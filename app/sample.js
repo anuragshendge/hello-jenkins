@@ -28,17 +28,17 @@ function addNumbers (base) {
  * @return {number} The addition of the two numbers if they are positive
  */
 function simpleAddPos (a, b) {
-	if (a == undefined) {
+	if (a === undefined) {
 		return undefined;
 	}
 
-	if (b == undefined) {
+	if (b === undefined) {
 		return undefined;
 	}
 
 	if (a > 0) {
 		if (b > 0) {
-			return a + b + 4;
+			return a + b;
 		} else {
 			return undefined;
 		}
