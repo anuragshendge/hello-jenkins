@@ -2,7 +2,8 @@
 ## Team members
 1. Krishna Teja Dinavahi (kdinava) 
 2. Aneesh Kher (aakher)
-3. Anurag Shendge (ashendg)
+3. Anurag Shendge (ashendg)  
+
 - - - 
 
 ## Project used to test the builds
@@ -86,7 +87,9 @@ sample.js: line 101, col 28, Expected '===' and instead saw '=='.
 </pre>  
 
 ##### 2. Extended Static Analysis
-To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.
+To extend the static analysis checks that are being run, we have developed a script which gives us the ratio of comments in a file to the actual lines of code in a file. If this ratio is below (or above) a certain threshold, the program will return a non zero exit status and hence the build will fail.  
+
+- - -
 
 
 ### Build Setup
