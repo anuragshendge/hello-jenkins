@@ -18,7 +18,7 @@ foreach my $line (@output_array) {
 		print "Coverage: $percentage\n";
 		if ($percentage < 90.00) {
 			#print("You fail! - ");
-			#not_enough_statement_coverage();
+			not_enough_statement_coverage();
 		} else {
 			print "You pass! - ";
 		}
