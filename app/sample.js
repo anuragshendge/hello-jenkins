@@ -66,11 +66,6 @@ function absolute (a, b) {
 	}
 }
 
-// Random comment
-// For testing purpose
-// Delete after testing
-// for this run
-
 function checkRange (a) {
 	if (a > 100) {
 		return 1;
