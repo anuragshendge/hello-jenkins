@@ -38,7 +38,7 @@ function simpleAddPos (a, b) {
 
 	if (a > 0) {
 		if (b > 0) {
-			return a + b;
+			return a + b+3;
 		} else {
 			return undefined;
 		}
