@@ -3,7 +3,6 @@ var os   = require("os");
 
 var config = {
 
-
 	config.token = "";
 
 };
