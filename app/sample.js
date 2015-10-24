@@ -45,7 +45,7 @@ function simpleAddPos (a, b) {
 	} else {
 		return undefined;
 	}
-};
+}
 
 /*
  * Return the absolute difference between two numbers
