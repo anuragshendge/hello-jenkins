@@ -209,7 +209,8 @@ function constraints(filePath)
 			traverse(node, function(child)
 			{
 				
-				if( child.type === 'BinaryExpression' && (child.operator == "==" || child.operator == "===") )
+				if( child.type === 'BinaryExpression' && (child.operator == "==" ))
+			//		|| child.operator == "===") )
 				{
 					if( child.left.type == 'Identifier' && params.indexOf( child.left.name ) > -1)
 					{
