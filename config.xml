@@ -1,0 +1,43 @@
+<project>
+   <actions />
+   <description />
+   <keepDependencies>false</keepDependencies>
+   <properties>
+      <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.14.0">
+         <projectUrl>https://github.com/anuragshendge/milestone2/</projectUrl>
+      </com.coravy.hudson.plugins.github.GithubProjectProperty>
+   </properties>
+   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+         <hudson.plugins.git.UserRemoteConfig>
+            <url>https://github.com/anuragshendge/milestone2.git</url>
+         </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+         <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+         </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="list" />
+      <extensions />
+   </scm>
+   <canRoam>true</canRoam>
+   <disabled>false</disabled>
+   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+   <triggers>
+      <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.14.0">
+         <spec />
+      </com.cloudbees.jenkins.GitHubPushTrigger>
+   </triggers>
+   <concurrentBuild>false</concurrentBuild>
+   <builders>
+      <hudson.tasks.Shell>
+         <command>npm install npm run ci-test npm install random-js cd app node main.js cd .. ./node_modules/.bin/istanbul cover app/test.js -x app/test.js &gt; test.tap ./node_modules/.bin/jshint ./app/sample.js node comment.js perl ./app/cover.pl</command>
+      </hudson.tasks.Shell>
+   </builders>
+   <publishers />
+   <buildWrappers />
+</project>
