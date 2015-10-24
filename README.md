@@ -100,5 +100,5 @@ In order to protect the private key files and AWS/Digital Ocean tokens, we have 
 ## Screencast  
 
 ### (Click the image below  and you will be redirected to YouTube)
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/uwU8yQDhyNE/0.jpg)](https://youtu.be/uwU8yQDhyNE)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/azplTOtj5m4/0.jpg)](https://youtu.be/azplTOtj5m4)
 
