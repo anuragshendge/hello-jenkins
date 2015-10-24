@@ -5,7 +5,7 @@
 3. Anurag Shendge (ashendg)  
 
 - - - 
-
+ 
 ## Project used to test the build
 For this milestone, we wrote a small JavaScript program to perform some basic arithmetic operations. This script is a standalone script with no library dependencies. We have included Unit tests, code coverage, static analysis, extended static analysis, and security checks as build steps in order to determine the success or failure of a build. Our project uses the following test and analysis components.
 
