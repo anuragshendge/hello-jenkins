@@ -117,3 +117,9 @@ exports.compareNumbers = compareNumbers;
 exports.simpleAddPos = simpleAddPos;
 exports.absolute = absolute;
 exports.checkRange = checkRange;
+/*
+1Test text
+2test
+3test
+4some text
+*/
